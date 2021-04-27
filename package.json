@@ -10,6 +10,7 @@
     "rollback": "docker exec -it api npx knex migrate:rollback --all",
     "inspect": "docker exec -it psql psql -U joren",
     "seed": "docker exec -it api npx knex seed:run",
+    "test:ci": "npx mocha ./test/**/*.test.js --exit",
     "test": "docker exec -it api npx mocha ./test/**/*.test.js --exit",
     "test:watch": "docker exec -it api npx mocha ./test/**/*.test.js --watch"
   },

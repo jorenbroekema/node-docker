@@ -1,0 +1,23 @@
+name: Verify changes
+
+on: pull_request
+
+jobs:
+  verify:
+    name: Verify changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Put secrets in .env
+        env:
+          DB_PW: ${{secrets.DB_PW}}
+        run: echo -e "DB_USER=joren\nDB_PW=$DB_PW" > .env
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --exit-code-from app

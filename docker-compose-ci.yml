@@ -1,0 +1,5 @@
+version: '3.8'
+
+services:
+  api:
+    command: sh -c "npm ci && npm run test"
