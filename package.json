@@ -6,12 +6,17 @@
     "start": "nodemon src/index.js",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback --all",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "test": "mocha ./test/**/*.test.js --exit",
+    "test:watch": "mocha ./test/**/*.test.js --watch"
   },
   "keywords": [],
   "author": "Joren Broekema",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "prettier": "^2.2.1"
   },

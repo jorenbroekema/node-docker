@@ -14,4 +14,14 @@ module.exports = {
       directory: path.join(BASE_PATH, 'seeds'),
     },
   },
+  test: {
+    client: 'pg',
+    connection: `postgres://${process.env.DB_USER}:${process.env.DB_PW}@localhost:5432/api_test`,
+    migrations: {
+      directory: path.join(BASE_PATH, 'migrations'),
+    },
+    seeds: {
+      directory: path.join(BASE_PATH, 'seeds'),
+    },
+  },
 };
