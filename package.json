@@ -1,0 +1,30 @@
+{
+  "name": "node-docker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "create:table": "node ./src/db/createTodoTable"
+  },
+  "keywords": [],
+  "author": "Joren Broekema",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "pg": "^8.6.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "printWidth": 100
+  }
+}
