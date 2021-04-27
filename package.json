@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon src/index.js",
-    "create:table": "node ./src/db/createTodoTable"
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback --all",
+    "seed": "knex seed:run"
   },
   "keywords": [],
   "author": "Joren Broekema",
