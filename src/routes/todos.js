@@ -1,68 +1,61 @@
 const Router = require('koa-router');
 
-const pool = require('../db/connection');
+const queries = require('../db/queries/todos');
 
 router = new Router();
 
 router.get('/todos', async (ctx) => {
-  const { rows } = await pool.query('SELECT * FROM todos;');
+  const todos = await queries.getTodos();
 
   ctx.status = 200;
   ctx.body = {
     status: 'success',
-    data: rows,
+    data: todos,
   };
 });
 
 router.get('/todos/:id', async (ctx) => {
   const { id } = ctx.params;
-  const { rows } = await pool.query(`SELECT * FROM todos WHERE id='${id}';`);
+  const todos = await queries.getTodo(id);
 
   ctx.status = 200;
   ctx.body = {
     status: 'success',
-    data: rows[0],
+    data: todos[0],
   };
 });
 
 router.post('/todos', async (ctx) => {
   const { name } = ctx.request.body;
-  console.log(ctx.request.body, name);
-  await pool.query(`
-    INSERT INTO todos (name)
-    VALUES ('${name}');
-  `);
+  const todos = await queries.addTodo({ name });
 
   ctx.status = 201;
   ctx.body = {
     status: 'success',
+    data: todos[0],
   };
 });
 
 router.put('/todos/:id', async (ctx) => {
   const { id } = ctx.params;
   const { name } = ctx.request.body;
-  await pool.query(`
-    UPDATE todos
-    SET name='${name}'
-    WHERE id=${id};
-  `);
+  const todos = await queries.updateTodo(id, { name });
 
   ctx.status = 200;
   ctx.body = {
     status: 'success',
+    data: todos[0],
   };
 });
 
 router.delete('/todos/:id', async (ctx) => {
   const { id } = ctx.params;
-  await pool.query(`
-    DELETE FROM todos WHERE id=${id};
-  `);
+  const todos = await queries.deleteTodo(id);
 
   ctx.status = 200;
   ctx.body = {
     status: 'success',
+    data: todos[0],
   };
 });
 

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "knex": "^0.95.4",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
