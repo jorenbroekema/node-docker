@@ -9,7 +9,7 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
-describe('Email addresses API', () => {
+describe('Todos API', () => {
   beforeEach(() =>
     knex.migrate
       .rollback()
