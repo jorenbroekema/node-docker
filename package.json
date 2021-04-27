@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon src/index.js",
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback --all",
-    "seed": "knex seed:run",
-    "test": "mocha ./test/**/*.test.js --exit",
-    "test:watch": "mocha ./test/**/*.test.js --watch"
+    "up": "docker-compose up -d",
+    "down": "docker-compose down",
+    "start": "docker exec -it api sh -c \"npx nodemon src/index.js\"",
+    "migrate": "docker exec -it api npx knex migrate:latest",
+    "rollback": "docker exec -it api npx knex migrate:rollback --all",
+    "inspect": "docker exec -it psql psql -U joren",
+    "seed": "docker exec -it api npx knex seed:run",
+    "test": "docker exec -it api npx mocha ./test/**/*.test.js --exit",
+    "test:watch": "docker exec -it api npx mocha ./test/**/*.test.js --watch"
   },
   "keywords": [],
   "author": "Joren Broekema",

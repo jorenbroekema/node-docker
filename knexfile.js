@@ -3,25 +3,23 @@ const path = require('path');
 
 const BASE_PATH = path.join(__dirname, 'src', 'db');
 
+const base = {
+  client: 'pg',
+  connection: `postgres://${process.env.DB_USER}:${process.env.DB_PW}@psql:5432/api`,
+  migrations: {
+    directory: path.join(BASE_PATH, 'migrations'),
+  },
+  seeds: {
+    directory: path.join(BASE_PATH, 'seeds'),
+  },
+};
+
 module.exports = {
   development: {
-    client: 'pg',
-    connection: `postgres://${process.env.DB_USER}:${process.env.DB_PW}@localhost:5432/api`,
-    migrations: {
-      directory: path.join(BASE_PATH, 'migrations'),
-    },
-    seeds: {
-      directory: path.join(BASE_PATH, 'seeds'),
-    },
+    ...base,
   },
   test: {
-    client: 'pg',
-    connection: `postgres://${process.env.DB_USER}:${process.env.DB_PW}@localhost:5432/api_test`,
-    migrations: {
-      directory: path.join(BASE_PATH, 'migrations'),
-    },
-    seeds: {
-      directory: path.join(BASE_PATH, 'seeds'),
-    },
+    ...base,
+    connection: `postgres://${process.env.DB_USER}:${process.env.DB_PW}@psql:5432/api_test`,
   },
 };

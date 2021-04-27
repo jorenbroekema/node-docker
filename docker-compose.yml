@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  psql:
+    container_name: psql
+    image: postgres:13.1
+    depends_on:
+      - api
+    ports:
+      - 5432:5432
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - psql-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: joren
+      POSTGRES_PASSWORD: grapefruits
+
+  api:
+    container_name: api
+    image: node:14-alpine
+    command: sh -c "npm i && tail -F docker-compose.yml"
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - ./:/app
+
+volumes:
+  psql-data:
