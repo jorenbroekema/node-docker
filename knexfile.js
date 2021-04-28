@@ -18,6 +18,9 @@ module.exports = {
   development: {
     ...base,
   },
+  production: {
+    ...base,
+  },
   test: {
     ...base,
     connection: `postgres://${process.env.DB_USER}:${process.env.DB_PW}@psql:5432/api_test`,
