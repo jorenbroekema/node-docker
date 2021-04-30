@@ -4,6 +4,8 @@ const queries = require('../db/queries/todos');
 
 router = new Router();
 
+// Hello
+
 router.get('/todos', async (ctx) => {
   try {
     const todos = await queries.getTodos();
